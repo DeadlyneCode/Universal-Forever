@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.addons.util.FlxSimplex;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.util.FlxColor;
 import gameObjects.userInterface.HealthIcon;
 import meta.*;
 import meta.data.*;
@@ -34,6 +35,7 @@ class Character extends FNFSprite
 	public var curCharacter:String = 'bf';
 
 	public var holdTimer:Float = 0;
+	public var healthColor:FlxColor = 0xFF31b0d1;
 
 	public var characterData:CharacterData;
 	public var adjustPos:Bool = true;
@@ -60,6 +62,7 @@ class Character extends FNFSprite
 
 		switch (curCharacter)
 		{
+			
 			case 'gf':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('characters/GF_assets');
@@ -75,6 +78,8 @@ class Character extends FNFSprite
 				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
 				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
 				animation.addByPrefix('scared', 'GF FEAR', 24);
+				healthColor = 0xFFa5004d;
+			
 
 				playAnim('danceRight');
 
@@ -92,6 +97,7 @@ class Character extends FNFSprite
 				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
 				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
 				animation.addByPrefix('scared', 'GF FEAR', 24);
+				healthColor= 0xFFa5004d;
 
 				playAnim('danceRight');
 
@@ -107,6 +113,7 @@ class Character extends FNFSprite
 				addOffset('danceRight', 0);
 
 				playAnim('danceRight');
+				healthColor= 0xFFa5004d;
 
 			case 'gf-pixel':
 				tex = Paths.getSparrowAtlas('characters/gfPixel');
@@ -130,7 +137,7 @@ class Character extends FNFSprite
 				animation.addByIndices('sad', 'GF Crying at Gunpoint', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
 				animation.addByIndices('danceLeft', 'GF Dancing at Gunpoint', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 				animation.addByIndices('danceRight', 'GF Dancing at Gunpoint', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-
+				healthColor= 0xFFa5004d;
 				playAnim('danceRight');
 
 			case 'dad':
@@ -142,8 +149,24 @@ class Character extends FNFSprite
 				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
 				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
 				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+				healthColor=0xFFaf66ce;
 
 				playAnim('idle');
+
+				case 'tankman':
+					tex = Paths.getSparrowAtlas('characters/tankman');
+					frames = tex;
+				    animation.addByPrefix('idle', 'tankmanCaptain idle', 24,false);
+				    animation.addByPrefix('singUP', 'tankmanCaptain singUP', 24);
+				    animation.addByPrefix('singRIGHT', 'tankmanCaptain singRIGHT', 24);
+				    animation.addByPrefix('singDOWN','tankmanCaptain singDOWN', 24);
+				    animation.addByPrefix('singLEFT','tankmanCaptain singLEFT', 24);
+					healthColor = 0xff000000;
+
+					flipX = true;
+
+					playAnim('idle');
+
 			case 'spooky':
 				tex = Paths.getSparrowAtlas('characters/spooky_kids_assets');
 				frames = tex;
@@ -153,6 +176,7 @@ class Character extends FNFSprite
 				animation.addByPrefix('singRIGHT', 'spooky sing right', 24, false);
 				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 6], "", 12, false);
 				animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
+				healthColor = 0xFFd57e00;
 
 				characterData.quickDancer = true;
 
@@ -187,6 +211,7 @@ class Character extends FNFSprite
 				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
 				// CUZ DAVE IS DUMB!
 				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+				healthColor = 0xFFd8558e;
 
 				playAnim('idle');
 			case 'monster':
@@ -197,6 +222,7 @@ class Character extends FNFSprite
 				animation.addByPrefix('singDOWN', 'monster down', 24, false);
 				animation.addByPrefix('singLEFT', 'Monster Right note', 24, false);
 				animation.addByPrefix('singRIGHT', 'Monster left note', 24, false);
+				healthColor = 0xFFf3ff6e;
 
 				playAnim('idle');
 
@@ -234,6 +260,7 @@ class Character extends FNFSprite
 
 				animation.addByPrefix('singUPmiss', 'pico Up note miss', 24);
 				animation.addByPrefix('singDOWNmiss', 'Pico Down Note MISS', 24);
+				healthColor = 0xFFb7d855;
 
 				playAnim('idle');
 
@@ -365,6 +392,7 @@ class Character extends FNFSprite
 				animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS', 24, false);
 				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
+				healthColor = 0xFF7bd6f6;
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -400,6 +428,7 @@ class Character extends FNFSprite
 				animation.addByPrefix('singLEFT', 'SENPAI LEFT NOTE', 24, false);
 				animation.addByPrefix('singRIGHT', 'SENPAI RIGHT NOTE', 24, false);
 				animation.addByPrefix('singDOWN', 'SENPAI DOWN NOTE', 24, false);
+				healthColor = 0xFFffaa6f;
 
 				playAnim('idle');
 
@@ -417,7 +446,7 @@ class Character extends FNFSprite
 				animation.addByPrefix('singLEFT', 'Angry Senpai LEFT NOTE', 24, false);
 				animation.addByPrefix('singRIGHT', 'Angry Senpai RIGHT NOTE', 24, false);
 				animation.addByPrefix('singDOWN', 'Angry Senpai DOWN NOTE', 24, false);
-
+				healthColor = 0xFFffaa6f;
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
 
@@ -432,6 +461,7 @@ class Character extends FNFSprite
 				animation.addByPrefix('singRIGHT', "right_", 24, false);
 				animation.addByPrefix('singLEFT', "left_", 24, false);
 				animation.addByPrefix('singDOWN', "spirit down_", 24, false);
+				healthColor = 0xFFff3c6e;
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -457,7 +487,7 @@ class Character extends FNFSprite
 				animation.addByPrefix('singDOWN-alt', 'Parent Down Note Mom', 24, false);
 				animation.addByPrefix('singLEFT-alt', 'Parent Left Note Mom', 24, false);
 				animation.addByPrefix('singRIGHT-alt', 'Parent Right Note Mom', 24, false);
-
+				healthColor = 0xFFaf66ce;
 				playAnim('idle');
 			default:
 				// set up animations if they aren't already

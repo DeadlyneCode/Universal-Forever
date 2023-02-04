@@ -67,15 +67,16 @@ class ClassHUD extends FlxTypedGroup<FlxBasic>
 
 		healthBarBG = new FlxSprite(0,
 			barY).loadGraphic(Paths.image(ForeverTools.returnSkinAsset('healthBar', PlayState.assetModifier, PlayState.changeableSkin, 'UI')));
-		healthBarBG.screenCenter(X);
-		healthBarBG.scrollFactor.set();
-		add(healthBarBG);
-
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8));
-		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
-		// healthBar
-		add(healthBar);
+			healthBarBG.screenCenter(X);
+			healthBarBG.scrollFactor.set();
+			add(healthBarBG);
+	
+			healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8));
+			healthBar.scrollFactor.set();
+			healthBar.createFilledBar(PlayState.dadOpponent.healthColor, PlayState.boyfriend.healthColor);
+			//no more green and red healthbar
+			// healthBar
+			add(healthBar);
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
